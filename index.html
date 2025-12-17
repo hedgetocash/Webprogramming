@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wetter in Solothurn</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1,
+        h2,
+        p {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Wetter in Solothurn</h1>
+    <h2>Aktuelle Temperatur in Solothurn:</h2>
+    <p id="Solothurn"></p>
+
+    <h2>Aktuelle Temperatur in Basel:</h2>
+    <p id="Basel"></p>
+
+    <script>
+        const kelvinToCelsius = (kelvin) => (kelvin - 273.15).toFixed(2);
+
+        fetch('https://api.openweathermap.org/data/2.5/weather?lat=47.21&lon=7.54&appid=6aa07a8c9c4b8b0e4daffae1b5c1261e')
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Fehler beim Abrufen der Wetterdaten');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                const temperatureC = kelvinToCelsius(data.main.temp);
+                document.getElementById("Solothurn").innerText = `beträgt ${temperatureC}°C`;
+            })
+            .catch((error) => {
+                console.error('Fehler:', error);
+            });
+
+        fetch('https://api.openweathermap.org/data/2.5/weather?lat=47.55&lon=7.58&appid=6aa07a8c9c4b8b0e4daffae1b5c1261e')
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Fehler beim Abrufen der Wetterdaten');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                const temperatureC = kelvinToCelsius(data.main.temp);
+                document.getElementById("Basel").innerText = `beträgt ${temperatureC}°C`;
+            })
+            .catch((error) => {
+                console.error('Fehler:', error);
+            });
+    </script>
+</body>
+
+</html>
