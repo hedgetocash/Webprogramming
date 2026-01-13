@@ -1,2 +1,7 @@
-<h1>Welcome</h1>
-<p>This is the welcome page of your SvelteKit application.</p>
+<nav>
+	<a href="/">home</a>
+	<a href="/about">about</a>
+</nav>
+
+<h1>home</h1>
+<p>this is the home page.</p>
