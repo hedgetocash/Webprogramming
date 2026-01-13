@@ -1,10 +1,19 @@
-<script lang="ts">
-	let { children } = $props()
+<script>
+	let { data, children } = $props()
 </script>
 
-<nav>
-	<a href="/">Home</a> |
-	<a href="/about">About</a> |
-</nav>
+<div class="layout">
+	<main>
+		{@render children()}
+	</main>
+</div>
 
-{@render children()}
+<style>
+	@media (min-width: 640px) {
+		.layout {
+			display: grid;
+			gap: 2em;
+			grid-template-columns: 1fr 16em;
+		}
+	}
+</style>
